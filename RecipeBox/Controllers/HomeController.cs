@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using RecipeBox.Models;
-using System.Collections.Generic;
 
 namespace RecipeBox.Controllers
 {
@@ -10,22 +8,7 @@ namespace RecipeBox.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-
-            List<Recipe> allRecipes = Recipe.GetAll();
-            return View(allRecipes);
-        }
-
-        [HttpGet("/recipes/new")]
-        public ActionResult CreateForm()
-        {
             return View();
-        }
-
-        [HttpPost("/recipes")]
-        public ActionResult Create(string description)
-        {
-            Recipe myRecipe = new Recipe(description);
-            return RedirectToAction("Index");
         }
 
     }
