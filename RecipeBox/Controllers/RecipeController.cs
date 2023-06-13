@@ -27,5 +27,12 @@ namespace RecipeBox.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost("/recipes/delete")]
+        public ActionResult DeleteAll()
+        {
+            Recipe.ClearAll();
+            return View();
+        }
+
     }
 }
