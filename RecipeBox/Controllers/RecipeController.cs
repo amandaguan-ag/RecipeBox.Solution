@@ -15,7 +15,7 @@ namespace RecipeBox.Controllers
         }
 
         [HttpGet("/recipes/new")]
-        public ActionResult CreateForm()
+        public ActionResult New()
         {
             return View();
         }
@@ -34,5 +34,11 @@ namespace RecipeBox.Controllers
             return View();
         }
 
+        [HttpGet("/recipes/{id}")]
+        public ActionResult Show(int id)
+        {
+            Recipe foundRecipe = Recipe.Find(id);
+            return View(foundRecipe);
+        }
     }
 }
