@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using RecipeBox.Models;
@@ -17,18 +18,25 @@ namespace RecipeBox.Controllers
 
         public ActionResult Index()
         {
-            List<Recipe> model = _db.Recipes.ToList();
+            List<Recipe> model = _db.Recipes
+                                  .Include(recipe => recipe.Category)
+                                  .ToList();
             return View(model);
         }
 
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Recipe recipe)
         {
+            if (recipe.CategoryId == 0)
+            {
+                return RedirectToAction("Create");
+            }
             _db.Recipes.Add(recipe);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -36,12 +44,16 @@ namespace RecipeBox.Controllers
 
         public ActionResult Details(int id)
         {
-            Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            Recipe thisRecipe = _db.Recipes
+                                .Include(recipe => recipe.Category)
+                                .FirstOrDefault(recipe => recipe.RecipeId == id);
             return View(thisRecipe);
         }
+
         public ActionResult Edit(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
             return View(thisRecipe);
         }
 
@@ -55,14 +67,14 @@ namespace RecipeBox.Controllers
 
         public ActionResult Delete(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
             return View(thisRecipe);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+            Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
             _db.Recipes.Remove(thisRecipe);
             _db.SaveChanges();
             return RedirectToAction("Index");

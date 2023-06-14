@@ -4,6 +4,7 @@ namespace RecipeBox.Models
 {
     public class RecipeBoxContext : DbContext
     {
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
 
         public RecipeBoxContext(DbContextOptions options) : base(options) { }
