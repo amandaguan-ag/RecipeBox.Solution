@@ -1,4 +1,4 @@
-namespace ToDoList.Models
+namespace RecipeBox.Models
 {
     public class Recipe
     {

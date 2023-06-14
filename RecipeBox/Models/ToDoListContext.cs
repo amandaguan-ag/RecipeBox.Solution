@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace ToDoList.Models
+namespace RecipeBox.Models
 {
-    public class ToDoListContext : DbContext
+    public class RecipeBoxContext : DbContext
     {
         public DbSet<Recipe> Recipes { get; set; }
 
-        public ToDoListContext(DbContextOptions options) : base(options) { }
+        public RecipeBoxContext(DbContextOptions options) : base(options) { }
     }
 }
