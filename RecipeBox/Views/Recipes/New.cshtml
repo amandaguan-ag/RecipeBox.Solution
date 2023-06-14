@@ -9,10 +9,13 @@
 </head>
 
 <body>
-    <form action="/recipes" method="post">
-        <label for="description">Add a new recipe</label>
-        <input id="description" name="description" type="text">
-        <button type="submit">Submit</button>
+    <h1>Add a new recipe to @Model.Name</h1>
+
+    <form action="/categories/@Model.Id/recipes" method="post">
+        <input id="categoryId" name="categoryId" type="hidden" value="@Model.Id">
+        <label for="recipeDescription">Recipe Description</label>
+        <input id="recipeDescription" name="recipeDescription" type="text">
+        <button type='submit'>Add Recipe</button>
     </form>
 </body>
 

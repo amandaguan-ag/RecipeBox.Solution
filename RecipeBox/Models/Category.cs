@@ -31,5 +31,11 @@ namespace RecipeBox.Models
         {
             return _instances[searchId - 1];
         }
+
+        public void AddRecipe(Recipe recipe)
+        {
+            Recipes.Add(recipe);
+        }
+
     }
 }
