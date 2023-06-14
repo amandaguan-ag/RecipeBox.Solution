@@ -45,8 +45,8 @@ namespace RecipeBox.Controllers
         public ActionResult Details(int id)
         {
             Recipe thisRecipe = _db.Recipes
-                                .Include(recipe => recipe.Category)
-                                .FirstOrDefault(recipe => recipe.RecipeId == id);
+                          .Include(recipe => recipe.Category)
+                          .FirstOrDefault(recipe => recipe.RecipeId == id);
             return View(thisRecipe);
         }
 

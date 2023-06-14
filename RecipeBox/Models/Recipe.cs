@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RecipeBox.Models
 {
     public class Recipe
@@ -6,5 +8,6 @@ namespace RecipeBox.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<RecipeTag> JoinEntities { get; }
     }
 }

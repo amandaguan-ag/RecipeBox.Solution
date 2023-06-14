@@ -1,5 +1,5 @@
 @{
-    Layout = "_Layout";
+  Layout = "_Layout";
 }
 
 @model RecipeBox.Models.Recipe
@@ -10,15 +10,15 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.RecipeId)
+  @Html.HiddenFor(model => model.RecipeId)
 
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
 
-    @Html.LabelFor(model => model.Category)
-    @Html.DropDownList("CategoryId")
+  @Html.LabelFor(model => model.Category)
+  @Html.DropDownList("CategoryId")
 
-    <input type="submit" value="Save" />
+  <input type="submit" value="Save" />
 }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
